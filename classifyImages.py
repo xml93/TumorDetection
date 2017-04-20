@@ -2,37 +2,37 @@ import cv2
 import numpy as np
 from matplotlib import pyplot as plt
 
-imgcodes = range(1,2)
+def getImageBrigthness(image):
+    height, width, channels = img.shape
+    total = 0
+    count = 0
+    for y in range(height):
+        for x in range(width):
+            total += (img[y][x][0] + img[y][x][1] + img[y][x][2])//3
+            count = count + 1
+    return total//count
+
+imgcodes = range(1,6)
 for imgcode in imgcodes:
     fileName = str(imgcode) + '.jpeg'
-    img = cv2.imread(fileName,0)
+    img = cv2.imread(fileName)
+    print(str(getImageBrigthness(img)))
     img2 = img.copy()
-    template = cv2.imread('a.jpeg',0)
-    w, h = template.shape[::-1]
+    template = cv2.imread('a.jpeg')
+    w, h, c = template.shape
 
     # All the 6 methods for comparison in a list
-    methods = ['cv2.TM_CCOEFF', 'cv2.TM_CCOEFF_NORMED', 'cv2.TM_CCORR',
-                'cv2.TM_CCORR_NORMED', 'cv2.TM_SQDIFF', 'cv2.TM_SQDIFF_NORMED']
+    #methods = ['cv2.TM_CCOEFF', 'cv2.TM_CCOEFF_NORMED', 'cv2.TM_CCORR',
+    #            'cv2.TM_CCORR_NORMED', 'cv2.TM_SQDIFF', 'cv2.TM_SQDIFF_NORMED']
 
-    #methods = ['cv2.TM_SQDIFF_NORMED']
+    methods = ['cv2.TM_SQDIFF_NORMED']
     for meth in methods:
         img = img2.copy()
         method = eval(meth)
 
         # Apply template Matching
-#        res = cv2.matchTemplate(img,template,method)
-#        height, width = img2.shape
-#        highest = 0
-#        bestX=0
-#        bestY=0
-#        for y in range(len(res)):
-#            for x in range(len(res[0])):
-#                if(res[y][x]> highest):
-#                    highest = res[y][x]
-#                    bestX=x
-#                    bestY=y
-#        print("X:" + str(bestX))
-#        print("Y:" + str(bestY))
+        res = cv2.matchTemplate(img,template,method)
+
         min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(res)
         print("min_loc" + str(min_loc))
         print("max_loc" + str(max_loc))
