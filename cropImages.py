@@ -10,7 +10,7 @@ def plot():
     plt.show()
 
 def crop(maxId):
-    for i in range(maxId):
+    for i in range(1,maxId):
         fileName = str(i) + ".jpeg"
         img=cv2.imread(fileName)
         height, width, channels = img.shape

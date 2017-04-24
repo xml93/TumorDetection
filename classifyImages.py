@@ -28,7 +28,7 @@ def main():
         img = cv2.imread(fileName)
         print(str(getImageBrigthness(img)))
         img2 = img.copy()
-        template = cv2.imread('a.jpeg')
+        template = cv2.imread('template.jpeg')
         w, h, c = template.shape
         
         templateSizingSteps = np.arange(0.9,1.3,0.1)
