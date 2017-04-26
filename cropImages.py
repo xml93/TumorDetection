@@ -9,8 +9,8 @@ def plot():
     plt.subplot(122),plt.imshow(img,cmap = 'gray')
     plt.show()
 
-def crop(fileName):
-    img=cv2.imread(fileName)
+def crop(path,fileName):
+    img=cv2.imread(path + fileName)
     height, width, channels = img.shape
     startX = width//2
     startY = height//2
@@ -29,7 +29,7 @@ def crop(fileName):
                     endY = y
 
     cropped = img[startY:endY, startX:endX]
-    fileName= "cropped_" + fileName
+    fileName= path + "cropped_" + fileName
     cv2.imwrite(fileName,cropped)
     #plot()
 
