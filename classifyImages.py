@@ -1,7 +1,9 @@
 import cv2
 import numpy as np
+import glob, os
 from matplotlib import pyplot as plt
 from cropImages import crop
+import glob, os
 
 def getImageBrigthness(img):
     height, width, channels = img.shape
@@ -20,11 +22,12 @@ def getImageBrigthness(img):
     return total//count, r//count, g//count, b//count
 
 def main():
-    maxId = 5
-    crop(maxId)
-    imgcodes = range(1,maxId)
-    for imgcode in imgcodes:
-        fileName = "new_" + str(imgcode) + '.jpeg'
+    dirName = "/images/"
+    os.chdir(os.getcwd()+dirName)
+    imgcodes = []
+    for file in glob.glob("*.jpeg"):
+        crop(file)
+        fileName = "cropped_" + file
         img = cv2.imread(fileName)
         print(str(getImageBrigthness(img)))
         img2 = img.copy()
@@ -67,6 +70,7 @@ def main():
                     for y in range(top_left[1],top_left[1] + int(h*step),1):
                         if(x < len(res) and y <len(res[0])):
                             sumProbability += res[x][y]
+                            # automatic penalize for being to close to corner
                 prob = sumProbability/(w*step*h*step)
                 print(prob)
                 
