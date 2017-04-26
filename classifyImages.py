@@ -4,6 +4,13 @@ import glob, os
 from matplotlib import pyplot as plt
 from cropImages import crop
 import glob, os
+import csv
+
+
+def writeRow(outputFile, featureList):
+    wr = csv.writer(outputFile, quoting=csv.QUOTE_ALL)
+    wr.writerow(featureList)
+    
 
 def getImageBrigthness(img):
     height, width, channels = img.shape
@@ -22,12 +29,18 @@ def getImageBrigthness(img):
     return total//count, r//count, g//count, b//count
 
 def main():
+    outPutFileName = "features.csv"
+    outPutFile = open(outPutFileName, 'wb')
+    fileHeaders = ["id","relPositionZ","positionX","positionY","bestProbabilityRatio","bestProbability"]
+    writeRow(outPutFile,fileHeaders)
     baseTemplate = cv2.imread('template.jpeg')
-    bestProb = 0;
+    bestProb = 0
+    bestRatio = 0
     bestProbFile = "";
     dirName = "/images/900_00_1961/"
     os.chdir(os.getcwd()+dirName)
     imgcodes = []
+    layerCount = 0
     for file in glob.glob("*.jpeg"):
         crop(file)
         fileName = "cropped_" + file
@@ -94,18 +107,19 @@ def main():
                 #print("outer: " + str(sumProbabilityOuter))
                 print("ratio: " + str(sumProbabilityInner/sumProbabilityOuter))
                 prob = sumProbability/(w*step*h*step)
-                if (sumProbabilityInner/sumProbabilityOuter) > bestProb:
- 
+                if (sumProbabilityInner/sumProbabilityOuter) > bestRatio:
+                    bestRatio = (sumProbabilityInner/sumProbabilityOuter)
+                    bestLayer = layerCount
                     bestProbImg = img
-                    bestProb = (sumProbabilityInner/sumProbabilityOuter)
+                    bestProb = prob
                     bestBottom_right = bottom_right
                     bestTop_left = top_left
-                    cv2.rectangle(img,bestTop_left, bestBottom_right, 255, 1)
-                    plt.subplot(121),plt.imshow(bestProbImg,cmap = 'gray')
-                    plt.title('Best Match: ' + str((sumProbabilityInner/sumProbabilityOuter))), plt.xticks([]), plt.yticks([])
-                    plt.subplot(122),plt.imshow(baseTemplate,cmap = 'gray')
-                    plt.title('Template'), plt.xticks([]), plt.yticks([])
-                    plt.show()
+                    #cv2.rectangle(img,bestTop_left, bestBottom_right, 255, 1)
+                    #plt.subplot(121),plt.imshow(bestProbImg,cmap = 'gray')
+                    #plt.title('Best Match: ' + str((sumProbabilityInner/sumProbabilityOuter))), plt.xticks([]), plt.yticks([])
+                    #plt.subplot(122),plt.imshow(baseTemplate,cmap = 'gray')
+                    #plt.title('Template'), plt.xticks([]), plt.yticks([])
+                    #plt.show()
                 print("prob: " + str(prob))
                 print("top_left: " + str(top_left))
                 print("bottom_right: " + str(bottom_right))
@@ -116,7 +130,11 @@ def main():
 #                plt.title('Detected Point'), plt.xticks([]), plt.yticks([])
 #                plt.suptitle(meth)
 #                plt.show()
+            layerCount += 1
 
+    features = ["900_00_1961",str(bestLayer/layerCount),str((bestBottom_right[0] - bestTop_left[0])/2),\
+                str((bestBottom_right[1] - bestTop_left[1])/2),str(bestRatio),str(bestProb)]
+    writeRow(outPutFile, features)
     cv2.rectangle(bestProbImg,bestTop_left, bestBottom_right, 255, 1)
     plt.imshow(bestProbImg,cmap = 'gray')
     plt.title('Best Match: ' + str(bestProb)), plt.xticks([]), plt.yticks([])
