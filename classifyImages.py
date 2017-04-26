@@ -33,24 +33,22 @@ def main():
     fileHeaders = ["id","relPositionZ","positionX","positionY","bestProbabilityRatio","bestProbability"]
     writeRow(outPutFile,fileHeaders)
     baseTemplate = cv2.imread('template.jpeg')
-    bestProb = 0
-    bestRatio = 0
-    bestLayer = 0
-    bestBottom_right = (0,0)
-    bestTop_left = (0,0)
-    bestProbImg = 0
-    bestProbFile = "";
     imgDir = "/images/"
     os.chdir(os.getcwd()+imgDir)
     for dirName, subdirList, fileList in os.walk(os.getcwd()):
         if not dirName.endswith("images"):
-            print("Sequence: " + str(dirName))
-            print(fileList)
-            imgcodes = []
             layerCount = 1
+            bestProb = 0
+            bestRatio = 0
+            bestLayer = 0
+            bestBottom_right = (0,0)
+            bestTop_left = (0,0)
+            bestProbImg = 0
+            bestProbFile = "";
+            print("Sequence: " + str(dirName))
             for f in fileList:
                 if f.endswith('.jpeg') or f.endswith('.jpg'):
-                    layerCount += 1
+                    layerCount = layerCount + 1
                     filePath = str(dirName) + "/"
                     print("File:" + dirName + "/" +  str(f))
                     crop(filePath,str(f))
@@ -131,12 +129,12 @@ def main():
                             print("prob: " + str(prob))
                             print("top_left: " + str(top_left))
                             print("bottom_right: " + str(bottom_right))
-            features = [str(dirName),str(bestLayer/layerCount),str((bestBottom_right[0] - bestTop_left[0])/2),\
-                        str((bestBottom_right[1] - bestTop_left[1])/2),str(bestRatio),str(bestProb)]
+            features = [str(dirName),str(float(bestLayer/layerCount)),str(float((bestBottom_right[0] - bestTop_left[0])/2)),\
+                        str(float((bestBottom_right[1] - bestTop_left[1])/2)),str(bestRatio),str(bestProb)]
             writeRow(outPutFile, features)
-#            cv2.rectangle(bestProbImg,bestTop_left, bestBottom_right, 255, 1)
-#            plt.imshow(bestProbImg,cmap = 'gray')
-#            plt.title('Best Match('+str(directory) + '): ' + str(bestProb)), plt.xticks([]), plt.yticks([])
-#            plt.show()
+            cv2.rectangle(bestProbImg,bestTop_left, bestBottom_right, 255, 1)
+            plt.imshow(bestProbImg,cmap = 'gray')
+            plt.title('Best Match('+str(dirName) + '): ' + str(bestProb)), plt.xticks([]), plt.yticks([])
+            plt.show()
 
 main()
