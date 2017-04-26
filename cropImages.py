@@ -18,7 +18,7 @@ def crop(fileName):
     endY = height//2
     for y in range(height):
         for x in range(width):
-            if img[y][x][0] > 50 or img[y][x][1] > 50 or img[y][x][2] > 50:
+            if img[y][x][0] > 70 or img[y][x][1] > 70 or img[y][x][2] > 70:
                 if startY > y:
                     startY = y
                 if startX > x:
