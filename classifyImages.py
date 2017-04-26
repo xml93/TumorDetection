@@ -20,7 +20,7 @@ def getImageBrigthness(img):
     return total//count, r//count, g//count, b//count
 
 def main():
-    maxId = 10
+    maxId = 5
     crop(maxId)
     imgcodes = range(1,maxId)
     for imgcode in imgcodes:
@@ -31,7 +31,7 @@ def main():
         template = cv2.imread('template.jpeg')
         w, h, c = template.shape
         
-        templateSizingSteps = np.arange(0.9,1.3,0.1)
+        templateSizingSteps = np.arange(1,2.5,0.5)
         for step in templateSizingSteps:
             print("Current resizing step: " + str(step))
             height, width = template.shape[:2]
@@ -59,9 +59,18 @@ def main():
                     top_left = min_loc
                 else:
                     top_left = max_loc
-                bottom_right = (top_left[0] + w, top_left[1] + h)
+                bottom_right = (top_left[0] + int(w*step), top_left[1] + int(h*step))
 
-                cv2.rectangle(img,top_left, bottom_right, 255, 2)
+                sumProbability = 0
+                print(res)
+                for x in range(top_left[0],top_left[0]+int(w*step),1):
+                    for y in range(top_left[1],top_left[1] + int(h*step),1):
+                        if(x < len(res) and y <len(res[0])):
+                            sumProbability += res[x][y]
+                prob = sumProbability/(w*step*h*step)
+                print(prob)
+                
+                cv2.rectangle(img,top_left, bottom_right, 255, 1)
                 plt.subplot(121),plt.imshow(res,cmap = 'gray')
                 plt.title('Matching Result'), plt.xticks([]), plt.yticks([])
                 plt.subplot(122),plt.imshow(img,cmap = 'gray')
