@@ -36,7 +36,7 @@ def main():
         print(str(getImageBrigthness(img)))
         img2 = img.copy()
         
-        templateSizingSteps = np.arange(1,2.5,0.5)
+        templateSizingSteps = np.arange(0.5,2,0.5)
         for step in templateSizingSteps:
             print("Current resizing step: " + str(step))
             template = baseTemplate
@@ -94,11 +94,18 @@ def main():
                 #print("outer: " + str(sumProbabilityOuter))
                 print("ratio: " + str(sumProbabilityInner/sumProbabilityOuter))
                 prob = sumProbability/(w*step*h*step)
-                if prob > bestProb:
+                if (sumProbabilityInner/sumProbabilityOuter) > bestProb:
+ 
                     bestProbImg = img
-                    bestProb = prob
+                    bestProb = (sumProbabilityInner/sumProbabilityOuter)
                     bestBottom_right = bottom_right
                     bestTop_left = top_left
+                    cv2.rectangle(img,bestTop_left, bestBottom_right, 255, 1)
+                    plt.subplot(121),plt.imshow(bestProbImg,cmap = 'gray')
+                    plt.title('Best Match: ' + str((sumProbabilityInner/sumProbabilityOuter))), plt.xticks([]), plt.yticks([])
+                    plt.subplot(122),plt.imshow(baseTemplate,cmap = 'gray')
+                    plt.title('Template'), plt.xticks([]), plt.yticks([])
+                    plt.show()
                 print("prob: " + str(prob))
                 print("top_left: " + str(top_left))
                 print("bottom_right: " + str(bottom_right))
@@ -110,7 +117,7 @@ def main():
 #                plt.suptitle(meth)
 #                plt.show()
 
-    cv2.rectangle(img,bestTop_left, bestBottom_right, 255, 1)
+    cv2.rectangle(bestProbImg,bestTop_left, bestBottom_right, 255, 1)
     plt.imshow(bestProbImg,cmap = 'gray')
     plt.title('Best Match: ' + str(bestProb)), plt.xticks([]), plt.yticks([])
     plt.show()
