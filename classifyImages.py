@@ -32,13 +32,24 @@ def main():
     truthDict = getTruthDict()
     outPutFileName = "features.csv"
     outPutFile = open(outPutFileName, 'wb')
-    fileHeaders = ["id","relPositionZ","positionX","positionY","bestProbabilityRatio","bestProbability","truePosition"]
+
+    # All the 6 methods for comparison in a list
+    # methods = ['cv2.TM_CCOEFF', 'cv2.TM_CCOEFF_NORMED', 'cv2.TM_CCORR',
+    #   'cv2.TM_CCORR_NORMED', 'cv2.TM_SQDIFF', 'cv2.TM_SQDIFF_NORMED']
+    methods = ['cv2.TM_SQDIFF_NORMED','cv2.TM_CCORR_NORMED']
+    plainFeatures = ["relPositionZ","positionX","positionY","bestProbabilityRatio","bestProbability"]
+    fileHeaders = ["id"]
+    for meth in methods:
+        for feature in plainFeatures:
+            fileHeaders += [str(feature) + "-" + str(meth)]
+    fileHeaders += ["truePosition"]
     writeRow(outPutFile,fileHeaders)
     baseTemplate = cv2.imread('template.jpeg')
     imgDir = "/images/"
     os.chdir(os.getcwd()+imgDir)
     for dirName, subdirList, fileList in os.walk(os.getcwd()):
         if not dirName.endswith("images"):
+            print("Sequence: " + str(dirName))
             layerCount = 1
             bestProb = 0
             bestRatio = 0
@@ -47,30 +58,29 @@ def main():
             bestTop_left = (0,0)
             bestProbImg = 0
             bestProbFile = ""
-            print("Sequence: " + str(dirName))
-            for f in fileList:
-                if f.endswith('.jpeg') or f.endswith('.jpg'):
-                    layerCount = layerCount + 1
-                    filePath = str(dirName) + "/"
-                    print("File:" + dirName + "/" +  str(f))
-                    crop(filePath,str(f))
-                    fileName = str(dirName) + "/" + "cropped_" + f
-                    img = cv2.imread(fileName)
-                    os.remove(fileName)
-                    #print(str(getImageBrigthness(img)))
-                    img2 = img.copy()
-                    templateSizingSteps = np.arange(0.5,2,0.5)
-                    for step in templateSizingSteps:
-                        print("Current resizing step: " + str(step))
-                        template = baseTemplate
-                        w, h, c = template.shape
-                        #print("template: " +str(template.shape[:2]))
-                        template = cv2.resize(template,(int(h*step), int(w*step)), interpolation = cv2.INTER_CUBIC)      
-                        # All the 6 methods for comparison in a list
-            #            methods = ['cv2.TM_CCOEFF', 'cv2.TM_CCOEFF_NORMED', 'cv2.TM_CCORR',
-            #                        'cv2.TM_CCORR_NORMED', 'cv2.TM_SQDIFF', 'cv2.TM_SQDIFF_NORMED']
-                        methods = ['cv2.TM_SQDIFF_NORMED']
-                        for meth in methods:
+            for meth in methods:
+                print("Using method: " + str(meth))
+                features = [str(dirName.split("/")[-1])]
+                for f in fileList:
+                    if f.endswith('.jpeg') or f.endswith('.jpg'):
+                        layerCount = layerCount + 1
+                        filePath = str(dirName) + "/"
+                        print("File:" + dirName + "/" +  str(f))
+                        crop(filePath,str(f))
+                        fileName = str(dirName) + "/" + "cropped_" + f
+                        img = cv2.imread(fileName)
+                        os.remove(fileName)
+                        #print(str(getImageBrigthness(img)))
+                        img2 = img.copy()
+
+                        templateSizingSteps = np.arange(0.5,2,0.5)
+                        for step in templateSizingSteps:
+                            print("Current resizing step: " + str(step))
+                            template = baseTemplate
+                            w, h, c = template.shape
+                            #print("template: " +str(template.shape[:2]))
+                            template = cv2.resize(template,(int(h*step), int(w*step)), interpolation = cv2.INTER_CUBIC)      
+
                             img = img2.copy()
                             method = eval(meth)
                             # Apply template Matching
@@ -115,9 +125,10 @@ def main():
                             #print("ratio: " + str(sumProbabilityInner/sumProbabilityOuter))
                             print("layerCount" + str(layerCount))
                             prob = sumProbability/(w*step*h*step)
-                            if (float(sumProbabilityInner)/sumProbabilityOuter) > bestRatio:
+                            probRatio = float(sumProbabilityInner)/sumProbabilityOuter
+                            if probRatio > bestRatio:
                                 print("best layer: " + str(layerCount))
-                                bestRatio = (float(sumProbabilityInner)/sumProbabilityOuter)
+                                bestRatio = probRatio
                                 bestLayer = layerCount
                                 print("best layer: " + str(bestLayer))
                                 bestProbImg = img
@@ -130,18 +141,21 @@ def main():
                                 #plt.subplot(122),plt.imshow(baseTemplate,cmap = 'gray')
                                 #plt.title('Template'), plt.xticks([]), plt.yticks([])
                                 #plt.show()
-                            #print("prob: " + str(prob))
+                            print("prob: " + str(prob))
+                            print("probRation: " + str(probRatio))
                             #print("top_left: " + str(top_left))
                             #print("bottom_right: " + str(bottom_right))
-            truth = truthDict[str(dirName.split("/")[-1])]
-            features = [str(dirName.split("/")[-1]),str(float(bestLayer)/layerCount),str(float(bestBottom_right[0] - bestTop_left[0])/2),\
-                        str(float(bestBottom_right[1] - bestTop_left[1])/2),str(bestRatio),str(bestProb),str(truth)]
+                truth = truthDict[str(dirName.split("/")[-1])]
+
+                features += [str(float(bestLayer)/layerCount),str(float(bestBottom_right[0] + bestTop_left[0])/2),\
+                            str(float(bestBottom_right[1] + bestTop_left[1])/2),str(bestRatio),str(bestProb)]
+            features += [str(truth)]
             writeRow(outPutFile, features)
-#            cv2.rectangle(bestProbImg,bestTop_left, bestBottom_right, 255, 1)
- #           plt.subplot(121),plt.imshow(bestProbImg,cmap = 'gray')
-  #          plt.title('Best('+str(dirName.split("/")[-1]) + '): ' + str(bestRatio) + ' : ' + str(bestLayer)), plt.xticks([]), plt.yticks([])
-   #         plt.subplot(122),plt.imshow(baseTemplate,cmap = 'gray')
-    #        plt.title('Template'), plt.xticks([]), plt.yticks([])
+    #            cv2.rectangle(bestProbImg,bestTop_left, bestBottom_right, 255, 1)
+     #           plt.subplot(121),plt.imshow(bestProbImg,cmap = 'gray')
+      #          plt.title('Best('+str(dirName.split("/")[-1]) + '): ' + str(bestRatio) + ' : ' + str(bestLayer)), plt.xticks([]), plt.yticks([])
+       #         plt.subplot(122),plt.imshow(baseTemplate,cmap = 'gray')
+        #        plt.title('Template'), plt.xticks([]), plt.yticks([])
      #       plt.show()
 
 main()
