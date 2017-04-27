@@ -21,7 +21,7 @@ library(e1071)
 data <- read.csv("features.csv")
 data
 data$truePosition <- as.factor(data$truePosition)
-data <- data[-c(which( colnames(dataTest)=="id"))]
+data <- data[-c(which( colnames(data)=="id"))]
 ```
 
 
@@ -29,9 +29,7 @@ data <- data[-c(which( colnames(dataTest)=="id"))]
 ```{r eval=T, message=F}
 dataTrain = data[seq(1,nrow(data),2),]
 dataTest = data[seq(2,nrow(data),2),]
-# Special refactoring for TAN
-tanTrain <- dataTrain[ ,sapply(dataTrain, is.factor)]
-tanTest <- dataTest[ ,sapply(dataTest, is.factor)]
+
 ```
 
 ### Application of ML Algorithms
@@ -39,14 +37,8 @@ tanTest <- dataTest[ ,sapply(dataTest, is.factor)]
 
 ############## Naive Bayes   ##############
 
-nb = naiveBayes(truePosition~.,dataTrain)
+nb = naiveBayes(truePosition ~ . , dataTrain)
 bayesAccuracy <- sum(predict(nb, dataTest)==dataTest$truePosition) / nrow(dataTest)
-
-############## Tree Augmented NB ##############
-
-tan = tree.bayes(tanTrain, "truePosition")
-fittedTan = bn.fit(tan, tanTrain)
-tanAccuracy <- (sum(predict(object=fittedTan, data=tanTest)==tanTest$truePosition)) / nrow(tanTest)
 
 ############## Decision Tree ##############
 
@@ -62,14 +54,10 @@ dtAccuracy <- (sum(predict(tree, dataTest, type="class")==dataTest$truePosition)
 ```{r eval=T, message=T}
 ############## Accuracy comparison  ##############
 n <- nrow(dataTest)
-dtAccuracyInCI <-  paste(toString(dtAccuracy-1.96*sqrt(dtAccuracy*(1-dtAccuracy)/n)),
-                         toString(dtAccuracy+1.96*sqrt(dtAccuracy*(1-dtAccuracy)/n)),sep="; ")
-tanAccuracyInCI <- paste(toString(tanAccuracy-1.96*sqrt(tanAccuracy*(1-tanAccuracy)/n)),
-                         toString(tanAccuracy+1.96*sqrt(tanAccuracy*(1-tanAccuracy)/n)), sep="; ")
-bayesAccuracyInCI <- paste(toString(bayesAccuracy-1.96*sqrt(bayesAccuracy*(1-bayesAccuracy)/n)),
-                           toString(bayesAccuracy+1.96*sqrt(bayesAccuracy*(1-bayesAccuracy)/n)), sep="; ")
-accuracyComparisonMatrix <- matrix(c(dtAccuracyInCI,lrAccuracyInCI,tanAccuracyInCI,bayesAccuracyInCI),ncol=4,byrow=TRUE)
-colnames(accuracyComparisonMatrix) <- c("Decision Tree", "Tree Augmented Naive Bayes", "Naive Bayes")
+dtAccuracyInCI <-  toString(dtAccuracy)
+bayesAccuracyInCI <- toString(bayesAccuracy)
+accuracyComparisonMatrix <- matrix(c(dtAccuracyInCI,bayesAccuracyInCI),ncol=2,byrow=TRUE)
+colnames(accuracyComparisonMatrix) <- c("Decision Tree", "Naive Bayes")
 rownames(accuracyComparisonMatrix) <- c("Accuracy")
 accuracyComparisonTable <- as.table(accuracyComparisonMatrix)
 accuracyComparisonTable
