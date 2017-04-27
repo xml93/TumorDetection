@@ -1,0 +1,2 @@
+"id","relPositionZ-cv2.TM_SQDIFF_NORMED","positionX-cv2.TM_SQDIFF_NORMED","positionY-cv2.TM_SQDIFF_NORMED","bestProbabilityRatio-cv2.TM_SQDIFF_NORMED","bestProbability-cv2.TM_SQDIFF_NORMED","relPositionZ-cv2.TM_CCORR_NORMED","positionX-cv2.TM_CCORR_NORMED","positionY-cv2.TM_CCORR_NORMED","bestProbabilityRatio-cv2.TM_CCORR_NORMED","bestProbability-cv2.TM_CCORR_NORMED","truePosition"
+"900-00-1961","0.6","51.5","31.5","0.141063548313","0.629328884932","0.333333333333","51.5","31.5","0.141063548313","0.629328884932","3"

@@ -50,6 +50,8 @@ def main():
     for dirName, subdirList, fileList in os.walk(os.getcwd()):
         if not dirName.endswith("images"):
             print("Sequence: " + str(dirName))
+            features = []
+            features.append(str(dirName.split("/")[-1]))
             layerCount = 1
             bestProb = 0
             bestRatio = 0
@@ -60,7 +62,6 @@ def main():
             bestProbFile = ""
             for meth in methods:
                 print("Using method: " + str(meth))
-                features = [str(dirName.split("/")[-1])]
                 for f in fileList:
                     if f.endswith('.jpeg') or f.endswith('.jpg'):
                         layerCount = layerCount + 1
@@ -85,8 +86,8 @@ def main():
                             method = eval(meth)
                             # Apply template Matching
                             res = cv2.matchTemplate(img,template,method)
-                            print("res:" + str(res.shape[:2]))
-                            print("img:" + str(img.shape[:2]))
+                            #print("res:" + str(res.shape[:2]))
+                            #print("img:" + str(img.shape[:2]))
                             min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(res)
                             #print("max_val" + str(max_val))
                             #print("min_loc" + str(min_loc))
@@ -107,7 +108,7 @@ def main():
                             adjustedResWidht = int(resWidth + w*step)
                             adjustedRes = cv2.resize(adjustedRes,( adjustedResHeigth, adjustedResWidht), interpolation = cv2.INTER_CUBIC)
 
-                            print("adjustedRes:" + str(adjustedRes.shape[:2]))
+                            #print("adjustedRes:" + str(adjustedRes.shape[:2]))
                             for x in range(top_left[0],top_left[0]+int(w*step),1):
                                 for y in range(top_left[1],top_left[1] + int(h*step),1):
                                     #if(x < len(res) and y <len(res[0])):
@@ -123,14 +124,12 @@ def main():
                             #print("inner: " + str(sumProbabilityInner))
                             #print("outer: " + str(sumProbabilityOuter))
                             #print("ratio: " + str(sumProbabilityInner/sumProbabilityOuter))
-                            print("layerCount" + str(layerCount))
+                            #print("layerCount" + str(layerCount))
                             prob = sumProbability/(w*step*h*step)
                             probRatio = float(sumProbabilityInner)/sumProbabilityOuter
                             if probRatio > bestRatio:
-                                print("best layer: " + str(layerCount))
                                 bestRatio = probRatio
                                 bestLayer = layerCount
-                                print("best layer: " + str(bestLayer))
                                 bestProbImg = img
                                 bestProb = prob
                                 bestBottom_right = bottom_right
@@ -141,15 +140,22 @@ def main():
                                 #plt.subplot(122),plt.imshow(baseTemplate,cmap = 'gray')
                                 #plt.title('Template'), plt.xticks([]), plt.yticks([])
                                 #plt.show()
-                            print("prob: " + str(prob))
-                            print("probRation: " + str(probRatio))
+                            #print("prob: " + str(prob))
+                            #print("probRation: " + str(probRatio))
                             #print("top_left: " + str(top_left))
                             #print("bottom_right: " + str(bottom_right))
                 truth = truthDict[str(dirName.split("/")[-1])]
+                print("--------------")
+                print("--------------")
+                print("--------------")
+                features.append(str(float(bestLayer)/layerCount))
+                features.append(str(float(bestBottom_right[0] + bestTop_left[0])/2))
+                features.append(str(float(bestBottom_right[1] + bestTop_left[1])/2))
+                features.append(str(bestRatio))
+                features.append(str(bestProb))
+                print(features)
 
-                features += [str(float(bestLayer)/layerCount),str(float(bestBottom_right[0] + bestTop_left[0])/2),\
-                            str(float(bestBottom_right[1] + bestTop_left[1])/2),str(bestRatio),str(bestProb)]
-            features += [str(truth)]
+            features.append(str(truth))
             writeRow(outPutFile, features)
     #            cv2.rectangle(bestProbImg,bestTop_left, bestBottom_right, 255, 1)
      #           plt.subplot(121),plt.imshow(bestProbImg,cmap = 'gray')
