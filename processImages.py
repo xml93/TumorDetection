@@ -34,8 +34,8 @@ def main():
     outPutFile = open(outPutFileName, 'wb')
 
     # All the 6 methods for comparison in a list
-    # methods = ['cv2.TM_CCOEFF', 'cv2.TM_CCOEFF_NORMED', 'cv2.TM_CCORR',
-    #   'cv2.TM_CCORR_NORMED', 'cv2.TM_SQDIFF', 'cv2.TM_SQDIFF_NORMED']
+    #methods = ['cv2.TM_CCOEFF', 'cv2.TM_CCOEFF_NORMED', 'cv2.TM_CCORR',
+     #  'cv2.TM_CCORR_NORMED', 'cv2.TM_SQDIFF', 'cv2.TM_SQDIFF_NORMED']
     methods = ['cv2.TM_SQDIFF_NORMED','cv2.TM_CCORR_NORMED']
     plainFeatures = ["relPositionZ","positionX","positionY","bestProbabilityRatio","bestProbability"]
     fileHeaders = ["id"]
@@ -74,7 +74,7 @@ def main():
                         #print(str(getImageBrigthness(img)))
                         img2 = img.copy()
 
-                        templateSizingSteps = np.arange(0.5,2,0.5)
+                        templateSizingSteps = np.arange(0.5,2.5,0.25)
                         for step in templateSizingSteps:
                             print("Current resizing step: " + str(step))
                             template = baseTemplate
