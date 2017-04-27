@@ -1,0 +1,94 @@
+# Research Paper: Brain Tumor Detection
+
+### Libraries
+```{r eval=T, message=F}
+#import libraries
+library(vegan)
+library(survival)
+library(bnlearn)
+library(dplyr)
+library(ggplot2)
+library(lattice)
+library(mice)
+library(ROCR)
+library(tableone)
+library(caret)
+library(rpart)
+library(e1071)
+```
+  
+### Reading the Features.csv Image Processing Output File
+```{r eval=T, message=T}
+data <- read.csv("features.csv")
+data
+```
+
+
+### Splitting Data into Train and Test Set
+```{r eval=T, message=F}
+dataTrain = data[seq(1,nrow(data),2),]
+dataTest = data[seq(2,nrow(data),2),]
+# Special refactoring for TAN
+tanTrain <- dataTrain[ ,sapply(dataTrain, is.factor)]
+tanTest <- dataTest[ ,sapply(dataTest, is.factor)]
+```
+
+### Application of ML Algorithms
+```{r eval=T, message=T}
+
+############## Naive Bayes   ##############
+
+nb = naiveBayes(truth~.,dataTrain)
+bayesAccuracy <- sum(predict(nb, dataTest)==dataTest$truth) / nrow(dataTest)
+bayesPredictedProbabilities <- predict(nb, dataTest,"raw")
+bayesPred <- prediction( bayesPredictedProbabilities[,2], dataTest$truth)
+bayesPerfROC <- performance(bayesPred,"tpr","fpr")
+bayesPerfPR <- performance(bayesPred, "prec", "rec")
+
+############## Tree Augmented NB ##############
+
+tan = tree.bayes(tanTrain, "truth")
+fittedTan = bn.fit(tan, tanTrain)
+tanAccuracy <- (sum(predict(object=fittedTan, data=tanTest)==tanTest$truth)) / nrow(tanTest)
+tanPredictedProbabilities <- attr(predict(object=fittedTan, data=tanTest, prob=TRUE),"prob")
+tanPredictedProbabilities <- data.frame(t(tanPredictedProbabilities))
+tanPred <- prediction( tanPredictedProbabilities[2], tanTest$truth)
+tanPerfROC <- performance(tanPred,"tpr","fpr")
+tanPerfPR <- performance(tanPred, "prec", "rec")
+
+
+############## Decision Tree ##############
+
+tree <- rpart(truth~ .,
+             data=dataTrain,
+             method="class")
+dtAccuracy <- (sum(predict(tree, dataTest, type="class")==dataTest$truth)) / nrow(dataTest)
+dtPredictedProbabilities <- predict(tree, dataTest, type = "prob")
+dtPred <- prediction( dtPredictedProbabilities[,2], dataTest$truth)
+dtPerfROC <- performance(dtPred,"tpr","fpr")
+dtPerfPR <- performance(dtPred, "prec", "rec")
+
+```
+
+### ROC Curve
+```{r eval=T, message=T}
+plot(tanPerfROC, add = TRUE, col="red")
+plot(bayesPerfROC, add = TRUE, col="green")
+plot(dtPerfROC, add = TRUE, col="violet")
+title(main="ROC Comparison of different Classifiers")
+legend("bottom",c("Tree Augmented Naive Bayes","Bayes Network","Decision Tree"),
+       col=c("blue","red", "green","violet"), lwd=3, y.intersp = 1.0)
+```
+
+### Precision Recall Curve
+```{r eval=T, message=T}
+plot(tanPerfPR, col="red")
+title(main="Precision/Recall Curve of Tree Augmented Naive Bayes")
+legend("bottom",c("Tree Augmented Naive Bayes"),col=c("red"), lwd=5)
+plot(bayesPerfPR, col="green")
+title(main="Precision/Recall Curve of Bayes Network")
+legend("bottom",c("Bayes Network"),col=c("green"), lwd=5)
+plot(dtPerfPR, col="violet")
+title(main="Precision/Recall Curve of Decision Tree")
+legend("bottom",c("Decision Tree"),col=c("violet"), lwd=5)
+```

@@ -1,0 +1,25 @@
+\begin{thebibliography}{3}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Nandha~Gopal()]{cite2}
+M.~Nandha~Gopal, N. ;~Karnan.
+\newblock Diagnose brain tumor through mri using image processing clustering
+  algorithms such as fuzzy c means along with intelligent optimization
+  techniques.
+
+\bibitem[Subha~Madhavan and Buetow()]{cite3}
+Yuri Kotliarov Himanso Sahni Howard A.~Fine Subha~Madhavan,
+  Jean-Claude~Zenklusen and Kenneth Buetow.
+\newblock Rembrandt: Helping personalized medicine become a reality through
+  integrative translational research.
+
+\bibitem[World-Health-Organization()]{cite1}
+World-Health-Organization.
+\newblock Early detection of cancer.
+\newblock URL \url{"http://www.who.int/cancer/detection/en/"}.
+
+\end{thebibliography}
