@@ -3,6 +3,7 @@ import numpy as np
 import glob, os
 from matplotlib import pyplot as plt
 from cropImages import crop
+from readTruthTable import getTruthDict
 import csv
 
 
@@ -28,9 +29,10 @@ def getImageBrigthness(img):
     return total//count, r//count, g//count, b//count
 
 def main():
+    truthDict = getTruthDict()
     outPutFileName = "features.csv"
     outPutFile = open(outPutFileName, 'wb')
-    fileHeaders = ["id","relPositionZ","positionX","positionY","bestProbabilityRatio","bestProbability"]
+    fileHeaders = ["id","relPositionZ","positionX","positionY","bestProbabilityRatio","bestProbability","truePosition"]
     writeRow(outPutFile,fileHeaders)
     baseTemplate = cv2.imread('template.jpeg')
     imgDir = "/images/"
@@ -126,15 +128,18 @@ def main():
                                 #plt.subplot(122),plt.imshow(baseTemplate,cmap = 'gray')
                                 #plt.title('Template'), plt.xticks([]), plt.yticks([])
                                 #plt.show()
-                            print("prob: " + str(prob))
-                            print("top_left: " + str(top_left))
-                            print("bottom_right: " + str(bottom_right))
+                            #print("prob: " + str(prob))
+                            #print("top_left: " + str(top_left))
+                            #print("bottom_right: " + str(bottom_right))
+            truth = truthDict[str(dirName.split("/")[-1])]
             features = [str(dirName),str(float(bestLayer/layerCount)),str(float((bestBottom_right[0] - bestTop_left[0])/2)),\
-                        str(float((bestBottom_right[1] - bestTop_left[1])/2)),str(bestRatio),str(bestProb)]
+                        str(float((bestBottom_right[1] - bestTop_left[1])/2)),str(bestRatio),str(bestProb),str(truth)]
             writeRow(outPutFile, features)
-            cv2.rectangle(bestProbImg,bestTop_left, bestBottom_right, 255, 1)
-            plt.imshow(bestProbImg,cmap = 'gray')
-            plt.title('Best Match('+str(dirName) + '): ' + str(bestProb)), plt.xticks([]), plt.yticks([])
-            plt.show()
+#            cv2.rectangle(bestProbImg,bestTop_left, bestBottom_right, 255, 1)
+ #           plt.subplot(121),plt.imshow(bestProbImg,cmap = 'gray')
+  #          plt.title('Best('+str(dirName.split("/")[-1]) + '): ' + str(bestRatio) + ' : ' + str(bestLayer)), plt.xticks([]), plt.yticks([])
+   #         plt.subplot(122),plt.imshow(baseTemplate,cmap = 'gray')
+    #        plt.title('Template'), plt.xticks([]), plt.yticks([])
+     #       plt.show()
 
 main()
