@@ -8,7 +8,17 @@ def main():
         for name in dirs:
             print(os.path.join(root, name))
         for name in files:
-            filename = os.path.join(root, name)
-            newFilename = os.path.join(root,name.replace('thumbnailViewer-',''))
-            os.rename(filename, newFilename)
+            if ("thumbnailViewer" in name and "images" not in name):
+                if len(name) == 22:
+                    print(name)
+                    print(name.replace('thumbnailViewer-',''))
+                    newFilename = os.path.join(root,name.replace('thumbnailViewer-',''))
+                elif len(name) == 21 :
+                    print(name)
+                    print(name.replace('thumbnailViewer-','0'))
+                    newFilename = os.path.join(root,name.replace('thumbnailViewer-','0'))
+                print("---")
+                filename = os.path.join(root, name)
+                
+                os.rename(filename, newFilename)
 main()

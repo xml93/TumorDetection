@@ -46,7 +46,7 @@ def main():
             bestBottom_right = (0,0)
             bestTop_left = (0,0)
             bestProbImg = 0
-            bestProbFile = "";
+            bestProbFile = ""
             print("Sequence: " + str(dirName))
             for f in fileList:
                 if f.endswith('.jpeg') or f.endswith('.jpg'):
@@ -64,7 +64,7 @@ def main():
                         print("Current resizing step: " + str(step))
                         template = baseTemplate
                         w, h, c = template.shape
-                        print("template: " +str(template.shape[:2]))
+                        #print("template: " +str(template.shape[:2]))
                         template = cv2.resize(template,(int(h*step), int(w*step)), interpolation = cv2.INTER_CUBIC)      
                         # All the 6 methods for comparison in a list
             #            methods = ['cv2.TM_CCOEFF', 'cv2.TM_CCOEFF_NORMED', 'cv2.TM_CCORR',
@@ -103,21 +103,23 @@ def main():
                                     #if(x < len(res) and y <len(res[0])):
                                     sumProbability += adjustedRes[y][x]
                                         # automatic penalize for being to close to corner
-                                    if (x < (top_left[0]+int(w*step)/3) or y < (top_left[1] + int(h*step)/3)):
+                                    if (x < (top_left[0]+float(w*step)/3) or y < (top_left[1] + float(h*step)/3)):
                                         sumProbabilityOuter += adjustedRes[y][x]
-                                    elif  (x > (top_left[0]+int(w*step)/3*2) or y > (top_left[1] + int(h*step)/3*2)):
+                                    elif  (x > (top_left[0]+float(w*step)/3*2) or y > (top_left[1] + float(h*step)/3*2)):
                                         sumProbabilityOuter += adjustedRes[y][x]
                                     else:
                                         sumProbabilityInner += adjustedRes[y][x]
                                         
                             #print("inner: " + str(sumProbabilityInner))
                             #print("outer: " + str(sumProbabilityOuter))
-                            print("ratio: " + str(sumProbabilityInner/sumProbabilityOuter))
+                            #print("ratio: " + str(sumProbabilityInner/sumProbabilityOuter))
+                            print("layerCount" + str(layerCount))
                             prob = sumProbability/(w*step*h*step)
-                            if (sumProbabilityInner/sumProbabilityOuter) > bestRatio:
-                                print("New top")
-                                bestRatio = (sumProbabilityInner/sumProbabilityOuter)
+                            if (float(sumProbabilityInner)/sumProbabilityOuter) > bestRatio:
+                                print("best layer: " + str(layerCount))
+                                bestRatio = (float(sumProbabilityInner)/sumProbabilityOuter)
                                 bestLayer = layerCount
+                                print("best layer: " + str(bestLayer))
                                 bestProbImg = img
                                 bestProb = prob
                                 bestBottom_right = bottom_right
@@ -132,8 +134,8 @@ def main():
                             #print("top_left: " + str(top_left))
                             #print("bottom_right: " + str(bottom_right))
             truth = truthDict[str(dirName.split("/")[-1])]
-            features = [str(dirName),str(float(bestLayer/layerCount)),str(float((bestBottom_right[0] - bestTop_left[0])/2)),\
-                        str(float((bestBottom_right[1] - bestTop_left[1])/2)),str(bestRatio),str(bestProb),str(truth)]
+            features = [str(dirName.split("/")[-1]),str(float(bestLayer)/layerCount),str(float(bestBottom_right[0] - bestTop_left[0])/2),\
+                        str(float(bestBottom_right[1] - bestTop_left[1])/2),str(bestRatio),str(bestProb),str(truth)]
             writeRow(outPutFile, features)
 #            cv2.rectangle(bestProbImg,bestTop_left, bestBottom_right, 255, 1)
  #           plt.subplot(121),plt.imshow(bestProbImg,cmap = 'gray')
