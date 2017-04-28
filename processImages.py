@@ -157,11 +157,11 @@ def main():
 
             features.append(str(truth))
             writeRow(outPutFile, features)
-    #            cv2.rectangle(bestProbImg,bestTop_left, bestBottom_right, 255, 1)
-     #           plt.subplot(121),plt.imshow(bestProbImg,cmap = 'gray')
-      #          plt.title('Best('+str(dirName.split("/")[-1]) + '): ' + str(bestRatio) + ' : ' + str(bestLayer)), plt.xticks([]), plt.yticks([])
-       #         plt.subplot(122),plt.imshow(baseTemplate,cmap = 'gray')
-        #        plt.title('Template'), plt.xticks([]), plt.yticks([])
-     #       plt.show()
+            cv2.rectangle(bestProbImg,bestTop_left, bestBottom_right, 255, 1)
+            plt.subplot(121),plt.imshow(bestProbImg,cmap = 'gray')
+            plt.title('Best('+str(dirName.split("/")[-1]) + '): ' + str(bestRatio) + ' : ' + str(bestLayer)), plt.xticks([]), plt.yticks([])
+            plt.subplot(122),plt.imshow(baseTemplate,cmap = 'gray')
+            plt.title('Template'), plt.xticks([]), plt.yticks([])
+            plt.show()
 
 main()

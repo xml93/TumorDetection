@@ -9,6 +9,8 @@
 % is archived at http://www.jmlr.org/format/natbib.pdf
 
 \usepackage{jmlr2e}
+\usepackage{graphicx}
+\graphicspath{ {images/} }
 
 
 
@@ -23,38 +25,32 @@
 \section{Abstract}
 \noindent Within this paper, I want to present the putcome of the  combined application of \textit{Computer Vision} (CV) and  \textit{Machine Learning} (ML) to the \textit{Repository of Molecular Brain Neoplasia Data } (REMBRANDT) dataset. This dataset contains pre-surgical \textit{magnetic resonance} (MR) multi-sequence images of 130 patients. Based on a visual analysis and the application of several ML algorithms, I tried to predict the location of the brain tumor and compare it to the evaluation of three Radiologist, which defined the affected brain part and the potential impact on the brain functionality.i
 
-\section{Detailed Description}
-\subsection{What is your proposed analysis?}
-The publicly available dataset, which includes extensive meta information, aggregates vertical and horizontal brain scans of different cancer patients. The proposed approach for this study tries to develop a supporting technology for radiologists to identify the brain tumor in each image sequence. This is realized by the application of CV algorithms that extract prognostic image features. These features will then be taken as the input for three Machine Learning algorithms: \textit{Logistic Regression}, \textit{Decision Trees} and \textit{Naive Bayes}, which will be trained to classify the location of the brain tumor.
+\section{Introduction}
+\subsection{Brain Cancer}
+Among all types of cancer, brain cancer is one of the deadliest even if it's not one of the most common ones. With a so-called \textit{5-Year Relative Survival Rate} of 32 \% for white people and 39 \% for black people it ranks on place 7 out of 26 for the lowest survival rate. Specific cancer types like \textit{Glioblastoma}, a very fast growing type of tumor, even has a a rate of 5\%. Especially in the later years of life, this rate decreases heavily for all types of brain cancer. \citep{cite1}
+The high variance in the surivial rate is given by many factors such as the type of tumor, the location and of course whether it was treated. Especially the latter ones formed a major part of scientific studies that included ways of scanning the human brain for malignant tissue as well as the way of stopping the growth of the tumor cells.
 
-\subsection{Why is your proposed analysis important?}
-The early detection of cancer greatly increases the chances for successful treatment. Two components can support the early detection of cancer:
+
+\subsection{Magnetic Resonance Imaging (MRI)}
+\textit{Magnetic Resonance Imaging} (MRI) addressed the challange of 
+\textit{scanning} the human body by using \textit{radiology}  to see different layers of the inner tissue or organs. These different layers can be combined together to construct a 3-dimensional model of any part of the body. Mainly a strong  \textit{magnetic fields} is used in combination with \textit{radio waves}  and so-called \textit{field gradients}.
+In comparison to \textit{Computer Tomography} (CT), MRI doesn't rely on \textit{X-radiation}, which qualifies it as a less harmful method. It should be mentioned that the magnetic waves of MRI can affect \textit{cardiac pacemakers} so that exceptions apply. \citep{edelman1993magnetic}
+
+\subsection{The Human Brain}
+Especially the development and refinement of the MRI technology favored advanced studies about the structure and functionality of the human brain. In order to understand the classification task of the presented algorithm, the major parts of the human brain are shortly described:
+\begin{figure}{0.9\textwidth}
+	\centering
+	\includegraphics[width=10cm]{brain-areas}
+	\caption{Brain Areas (source: Arizona State University)}
+\end{figure}%
+
 \begin{itemize}
-	\item Education to promote early diagnosis and
-	\item Screening
+	\item \textit{Frontal Lobe:} 
 \end{itemize}
-\citep{cite1}
+\citep{duvernoy2012human}
 
-The application of CV and ML could scale the screening opportunities for a high number of patients due to automization. In case the localization based on the proposed, fairly simple model performs well, the applicability of these technologies in the field of cancer prevention could be proven. Then, further investigation and development could be started in order to advance the applicability and reliability of the model.
 
-\subsection{How will your analysis contribute to existing work? Provide references.}
-
-In the past, CV has been applied to several fields in order to identify objects or patterns within images. \textit{Image Recognition} and ML usually form the underlying basis for CV, which can be understood as  \textit{understanding the image} . CV libraries like \textit{OpenCV} and ML libraries like \textit{Tensorflow} are both developed with a general purpose, which improves their overall performance but limits their applicability to niche areas. Since tumors can vary heavily in their appearance given different body parts and scan methods, such a general purpose tool would perform poorly. Therefore,  just a few approaches have been undertaken to utilize this combination of technologies. One example was provided by N. Nandha Gopal and M. Karnan by applying clustering algorithms such as \textit{Fuzzy C Means} to diagnose brain tumor \citep{cite2}.
-
-\subsection{Describe the data. Y outcome(s), U treatment, V covariates, W population as applicable.}
-The REMBRANDT dataset is described as "a cancer clinical genomics database", which includes a Web-based data mining and analysis platform that tries to connect clinical information and genomic characterization data \citep{cite3}. The MRI was undertaken prior to surgery and other treatment, therefore the outcome can be seen as the positioning of the tumor within the brain. The provided metadata uses the following measure for tumor localization within the brain: \textit{Temporal, Insular, Parietal, Occipital, Brainstem} and \textit{Cerebellum}. These \textit{labels} are used for the ML implementation.
-
-\subsection{What evaluation measures are appropriate for the analysis? Which measures will you use?}
-One core challange of this study is given by the creation of the prognostic image features. To train a ML algorithm some features must be extracted from the images to be able to calculate the probability of the tumor location. These probabilities indicate how likely it is for a tumor to be in one of the labelled brain regions.
-
-\subsection{What study design, pre-processing, and machine learning methods do you intend to use? Justify that the analysis is of appropriate size for a course project.}
-First, a selection of the right image series must be undertaken, which determines, whether horizontal or vertical MRI scans will be used for the analysis. Afterwards, these images might be preprocessed to maximize the CV performance. Based on the CV outcome, \textit{Logistic Regression}, \textit{Decision Trees} and \textit{Naive Bayes} algorithms are trained on a training dataset and tested again a test dataset.
-
-\subsection{What are possible limitations of the study?}
-Since the field of prediction is chosen to be very narrow, the developed model will not be applicable to other types of tumors without modifications. Furthermore, the final model will also not be too sophisticated since it can be seen as a novel approach for automated
-tumor localization and might just provide the basis for further investigation.
-
-\bibliography{sample}
+\bibliography{tumorDetection}
 %\appendix
 %\section*{Appendix A.}
 %Some more details about those methods, so we can actually reproduce them.

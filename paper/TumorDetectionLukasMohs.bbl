@@ -5,21 +5,27 @@
   \providecommand{\doi}[1]{doi: #1}\else
   \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
 
-\bibitem[Nandha~Gopal()]{cite2}
-M.~Nandha~Gopal, N. ;~Karnan.
-\newblock Diagnose brain tumor through mri using image processing clustering
-  algorithms such as fuzzy c means along with intelligent optimization
-  techniques.
+\bibitem[Duvernoy et~al.(2012)Duvernoy, Vannson, Bourgouin, Cabanis, Cattin,
+  Guyot, Iba-Zizen, Maeder, Parratte, Tatu, et~al.]{duvernoy2012human}
+H.M. Duvernoy, J.L. Vannson, P.~Bourgouin, E.A. Cabanis, F.~Cattin, J.~Guyot,
+  M.T. Iba-Zizen, P.~Maeder, B.~Parratte, L.~Tatu, et~al.
+\newblock \emph{The Human Brain: Surface, Three-Dimensional Sectional Anatomy
+  with MRI, and Blood Supply}.
+\newblock Springer Vienna, 2012.
+\newblock ISBN 9783709167922.
+\newblock URL \url{https://books.google.com/books?id=7y8kBgAAQBAJ}.
 
-\bibitem[Subha~Madhavan and Buetow()]{cite3}
-Yuri Kotliarov Himanso Sahni Howard A.~Fine Subha~Madhavan,
-  Jean-Claude~Zenklusen and Kenneth Buetow.
-\newblock Rembrandt: Helping personalized medicine become a reality through
-  integrative translational research.
+\bibitem[Edelman and Warach(1993)]{edelman1993magnetic}
+Robert~R Edelman and Steven Warach.
+\newblock Magnetic resonance imaging.
+\newblock \emph{New England Journal of Medicine}, 328\penalty0 (10):\penalty0
+  708--716, 1993.
 
-\bibitem[World-Health-Organization()]{cite1}
-World-Health-Organization.
-\newblock Early detection of cancer.
-\newblock URL \url{"http://www.who.int/cancer/detection/en/"}.
+\bibitem[Society()]{cite1}
+American~Cancer Society.
+\newblock Age-adjusted seer incidence and u.s. death rates and 5-year relative
+  survival (percent) by primary cancer site, sex and time period.
+\newblock URL
+  \url{"https://seer.cancer.gov/archive/csr/1975_2012/results_merged/topic_survival.pdf"}.
 
 \end{thebibliography}

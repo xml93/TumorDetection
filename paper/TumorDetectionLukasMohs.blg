@@ -2,71 +2,49 @@ This is BibTeX, Version 0.99d (TeX Live 2015)
 Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: TumorDetectionLukasMohs.aux
 The style file: plainnat.bst
-Database file #1: sample.bib
+Database file #1: tumorDetection.bib
 Warning--entry type for "cite1" isn't style-file defined
---line 1 of file sample.bib
-Too many commas in name 1 of "Subha Madhavan, Jean-Claude Zenklusen, Yuri Kotliarov, Himanso Sahni, Howard A. Fine and Kenneth Buetow" for entry cite3
-while executing---line 1347 of file plainnat.bst
-Too many commas in name 1 of "Subha Madhavan, Jean-Claude Zenklusen, Yuri Kotliarov, Himanso Sahni, Howard A. Fine and Kenneth Buetow" for entry cite3
-while executing---line 1347 of file plainnat.bst
-Too many commas in name 1 of "Subha Madhavan, Jean-Claude Zenklusen, Yuri Kotliarov, Himanso Sahni, Howard A. Fine and Kenneth Buetow" for entry cite3
-while executing---line 1347 of file plainnat.bst
-Too many commas in name 1 of "Subha Madhavan, Jean-Claude Zenklusen, Yuri Kotliarov, Himanso Sahni, Howard A. Fine and Kenneth Buetow" for entry cite3
-while executing---line 1347 of file plainnat.bst
-Warning--empty journal in cite2
-Warning--empty year in cite2
-Warning--empty year in cite2
-Too many commas in name 1 of "Subha Madhavan, Jean-Claude Zenklusen, Yuri Kotliarov, Himanso Sahni, Howard A. Fine and Kenneth Buetow" for entry cite3
-while executing---line 1429 of file plainnat.bst
-Too many commas in name 1 of "Subha Madhavan, Jean-Claude Zenklusen, Yuri Kotliarov, Himanso Sahni, Howard A. Fine and Kenneth Buetow" for entry cite3
-while executing---line 1429 of file plainnat.bst
-Too many commas in name 1 of "Subha Madhavan, Jean-Claude Zenklusen, Yuri Kotliarov, Himanso Sahni, Howard A. Fine and Kenneth Buetow" for entry cite3
-while executing---line 1429 of file plainnat.bst
-Too many commas in name 1 of "Subha Madhavan, Jean-Claude Zenklusen, Yuri Kotliarov, Himanso Sahni, Howard A. Fine and Kenneth Buetow" for entry cite3
-while executing---line 1429 of file plainnat.bst
-Warning--empty journal in cite3
-Warning--empty year in cite3
-Warning--empty year in cite3
+--line 1 of file tumorDetection.bib
 Warning--empty year in cite1
 You've used 3 entries,
             2773 wiz_defined-function locations,
-            602 strings with 5348 characters,
-and the built_in function-call counts, 986 in all, are:
-= -- 77
-> -- 41
-< -- 3
-+ -- 15
-- -- 12
-* -- 63
-:= -- 155
-add.period$ -- 7
+            612 strings with 5613 characters,
+and the built_in function-call counts, 1609 in all, are:
+= -- 128
+> -- 132
+< -- 2
++ -- 45
+- -- 42
+* -- 137
+:= -- 266
+add.period$ -- 11
 call.type$ -- 3
-change.case$ -- 13
+change.case$ -- 21
 chr.to.int$ -- 3
-cite$ -- 13
-duplicate$ -- 53
-empty$ -- 93
-format.name$ -- 17
-if$ -- 196
+cite$ -- 7
+duplicate$ -- 56
+empty$ -- 106
+format.name$ -- 47
+if$ -- 319
 int.to.chr$ -- 1
 int.to.str$ -- 1
-missing$ -- 2
-newline$ -- 21
+missing$ -- 3
+newline$ -- 25
 num.names$ -- 12
-pop$ -- 44
+pop$ -- 48
 preamble$ -- 1
-purify$ -- 10
+purify$ -- 19
 quote$ -- 0
-skip$ -- 38
+skip$ -- 53
 stack$ -- 0
-substring$ -- 6
-swap$ -- 1
+substring$ -- 31
+swap$ -- 3
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 33
-warning$ -- 7
-while$ -- 9
+type$ -- 28
+warning$ -- 1
+while$ -- 11
 width$ -- 0
-write$ -- 36
-(There were 8 error messages)
+write$ -- 47
+(There were 2 warnings)
