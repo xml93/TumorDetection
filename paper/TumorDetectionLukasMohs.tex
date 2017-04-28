@@ -10,6 +10,7 @@
 
 \usepackage{jmlr2e}
 \usepackage{graphicx}
+\usepackage{amsmath}
 \graphicspath{ {images/} }
 
 
@@ -125,6 +126,33 @@ In the following, I will explain the development of the matching template as wel
 
 \subsubsection{Template Development}
 To generate the template as an input for the matching process, I implemented an algorithm that develops a general pattern in form of an image that represents the average of a \textit{training image set}. As explain in section: \ref{cv}, a matrix can be used to represent each pixel of an image. Therefore, I manually selected some input tumor images and applied the algorithm provided in the \textit{generateTemplate.py} file. Each image is streched to the same size and to then calculate the average template matrix, the algorithm iterates over each pixel of each image and adds together all partial RGB values. This can be formulated as follows: 
+
+$$
+\not\!\circ_{x,y,c} = \frac{\sum_{i=1}^{n} A_{x,y,c}^{i}}{n}
+$$
+
+where $A$ is the matrix of all sets $c$:
+\[
+A^{i}=
+\begin{bmatrix}
+a_{1,1} & ... & a_{1,x}\\ 
+... & ... & ... \\ 
+a_{y,1} & ... & a_{y,x}
+\end{bmatrix}
+\]
+and where $c$ is the set of the color channels RGB:
+$$
+c \in \{r,g,b\}
+$$
+
+Figure \ref{fig:template-generation} demonstrates the input and result of this template creation process.
+
+\begin{figure}
+	\label{fig:template-generation}
+	\centering
+	\includegraphics[height=4cm]{template-generation}
+	\caption{Template Generation (left: input, right: output)}
+\end{figure}%
 
 \bibliography{tumorDetection}
 %\appendix
