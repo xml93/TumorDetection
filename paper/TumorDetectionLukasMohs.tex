@@ -76,7 +76,9 @@ Within this section I want to describe the setup and implementation of the \text
 	\item First, the images fo the REMBRANDT dataset are retrieved, preprocessed and analyzed by the application of several pattern matching methods.
 	\item Then, the output of the analysis is written to \textit{CSV} file to be taken as an input for the ML learning and prediction approach.
 \end{itemize}
-The most recent version of the source code of this project, which is based on  \textit{Python} for the image processing and \textit{R} for the ML part, can be found on Github: \textit{https://github.com/lukasmohs/TumorDetection} .
+The most recent version of the source code of this project, which is based on  \textit{Python} for the image processing and \textit{R} for the ML part, can be found on Github: 
+
+\textit{https://github.com/lukasmohs/TumorDetection} .
 
 \subsection{REMBRANDT Image Data Set}
 At this point, the input data in form of a series of image sequences is described: 
@@ -94,26 +96,35 @@ Therefore, the \textit{top-down} sequence of each patient was chosen to perform 
 
 \subsection{Image Preprocessing}
 label{image-preprocessing}
-As the first step of the CV part, the top-down image sequences for the patients were retrieved from the \textit{Cancer Image Archive}: \textit{https://wiki.cancerimagingarchive.net/display/Public/REMBRANDT} .
+As the first step of the CV part, the top-down image sequences for the patients were retrieved from the \textit{Cancer Image Archive}:
+
+ \textit{https://wiki.cancerimagingarchive.net/display/Public/REMBRANDT} .
+ 
+ 
+ \begin{figure}
+ 	\label{fig:full-sequence}
+ 	\centering
+ 	\includegraphics[width=15cm]{full-sequence}
+ 	\caption{Full Top-down Sequence of Individual}
+ \end{figure}%
+ 
+ 
 An entire sequence of scans is shown in Figure \ref{fig:full-sequence}.
-
-\begin{figure}
-	\label{fig:full-sequence}
-	\centering
-	\includegraphics[height=5cm]{full-sequence}
-	\caption{Full Top-down Sequence of Individual}
-\end{figure}%
-
-In order to better determine the location within one single image and to improve the pattern matching performance, the images should b cropped to the skull in the middle of the image. Hence, the algorithm contained in the \textit{cropImages.py} file was developed that iterates over the \textit{x-axis} and \textit{y-axis} of each image and identifies the important parts of the image based on the brightness (see: secttion \ref{cv}). It's outcome is vidualized in Figure \ref{fig:crop-image}
+In order to better determine the location within one single image and to improve the pattern matching performance, the images should b cropped to the skull in the middle of the image. Hence, the algorithm contained in the \textit{cropImages.py} file was developed that iterates over the \textit{x-axis} and \textit{y-axis} of each image and identifies the important parts of the image based on the brightness (see: secttion \ref{cv}). It's performance is vidualized in Figure \ref{fig:crop-image}. A new image is written to a file and used for the next processing step.
 
 \begin{figure}
 	\label{fig:crop-image}
 	\centering
-	\includegraphics[height=5cm]{crop-image}
+	\includegraphics[height=4cm]{crop-image}
 	\caption{Image Cropping}
 \end{figure}%
 
+\subsection{Pattern Matching}
+After preprocessing the images, the main part of the algorithm that extracts features out of the image sequences for the following ML approach can be executed. The major idea of identifying a tumor within each image is based on a \textit{similarity measure} between a so-called \textit{template} and the \textit{target image}. For the actual matching, the \textit{OpenCV} library version \textit{2.4.13.2} for Python was used \citep{opencv}. 
+In the following, I will explain the development of the matching template as well as the exact matching application.
 
+\subsubsection{Template Development}
+To generate the template as an input for the matching process, I implemented an algorithm that develops a general pattern in form of an image that represents the average of a \textit{training image set}. As explain in section: \ref{cv}, a matrix can be used to represent each pixel of an image. Therefore, I manually selected some input tumor images and applied the algorithm provided in the \textit{generateTemplate.py} file. Each image is streched to the same size and to then calculate the average template matrix, the algorithm iterates over each pixel of each image and adds together all partial RGB values. This can be formulated as follows: 
 
 \bibliography{tumorDetection}
 %\appendix

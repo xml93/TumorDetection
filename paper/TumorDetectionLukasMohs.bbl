@@ -1,9 +1,16 @@
-\begin{thebibliography}{5}
+\begin{thebibliography}{6}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
   \providecommand{\doi}[1]{doi: #1}\else
   \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[American-Cancer-Society()]{cite1}
+American-Cancer-Society.
+\newblock Age-adjusted seer incidence and u.s. death rates and 5-year relative
+  survival (percent) by primary cancer site, sex and time period.
+\newblock URL
+  \url{"https://seer.cancer.gov/archive/csr/1975_2012/results_merged/topic_survival.pdf"}.
 
 \bibitem[Duvernoy et~al.(2012)Duvernoy, Vannson, Bourgouin, Cabanis, Cattin,
   Guyot, Iba-Zizen, Maeder, Parratte, Tatu, et~al.]{duvernoy2012human}
@@ -27,12 +34,10 @@ Smith John Freymann Justin KirbyPaul Koppel Stephen Moore Stanley Phillips
 \newblock The cancer imaging archive (tcia): Maintaining and operating a public
   information repository".
 
-\bibitem[Society()]{cite1}
-American~Cancer Society.
-\newblock Age-adjusted seer incidence and u.s. death rates and 5-year relative
-  survival (percent) by primary cancer site, sex and time period.
-\newblock URL
-  \url{"https://seer.cancer.gov/archive/csr/1975_2012/results_merged/topic_survival.pdf"}.
+\bibitem[Opencv-Dev-Team()]{opencv}
+Opencv-Dev-Team.
+\newblock Opencv 2.4.13.2 documentation.
+\newblock URL \url{"http://docs.opencv.org/2.4.13.2/"}.
 
 \bibitem[World-Health-Organization()]{cite2}
 World-Health-Organization.

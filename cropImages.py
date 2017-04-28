@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 from matplotlib import pyplot as plt
 
-def plot():
+def plot(startX,startY,endX,endY, img):
     start = (startX, startY)
     end = (endX, endY)
     cv2.rectangle(img,start, end, 255, 2)
@@ -31,7 +31,7 @@ def crop(path,fileName):
     cropped = img[startY:endY, startX:endX]
     fileName= path + "cropped_" + fileName
     cv2.imwrite(fileName,cropped)
-    #plot()
+    #plot(startX,startY,endX,endY, img)
 
 def main(fileDir,fileName):
     crop(fileDir,fileName)
