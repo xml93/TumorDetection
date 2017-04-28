@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.4.24)  27 APR 2017 21:17
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.4.24)  27 APR 2017 21:42
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -275,8 +275,8 @@ LaTeX Warning: No \author given.
 ! Missing number, treated as zero.
 <to be read again> 
                    }
-l.41 \begin{figure}{0.9\textwidth}
-                                  
+l.41 \begin{figure}{1*\textwidth}
+                                 
 A number should have been here; I inserted `0'.
 (If you can't figure out why I needed to see a number,
 look up `weird error' in the index to The TeXbook.)
@@ -284,8 +284,8 @@ look up `weird error' in the index to The TeXbook.)
 ! Illegal unit of measure (pt inserted).
 <to be read again> 
                    }
-l.41 \begin{figure}{0.9\textwidth}
-                                  
+l.41 \begin{figure}{1*\textwidth}
+                                 
 Dimensions can be in units of em, ex, in, pt, pc,
 cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
 I'll assume that you meant to say pt, for printer's points.
@@ -349,7 +349,7 @@ Here is how much of TeX's memory you used:
 usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></u
 sr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></us
 r/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on TumorDetectionLukasMohs.pdf (2 pages, 1146449 bytes).
+Output written on TumorDetectionLukasMohs.pdf (2 pages, 1146698 bytes).
 PDF statistics:
  82 PDF objects out of 1000 (max. 8388607)
  69 compressed objects within 1 object stream

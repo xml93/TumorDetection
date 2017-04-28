@@ -10,10 +10,10 @@ def plot(img):
     
 def generateTumorTemplate():
     desiredSize = 70
-    imgcodes = range(1,10)
+    imgcodes = range(1,17)
     finalTemplate = np.zeros((desiredSize, desiredSize, 3), np.uint8)
     for imgcode in imgcodes:
-        fileName = str(imgcode) + '.jpeg'
+        fileName = str(imgcode) + '.PNG'
         if os.path.isfile(os.path.join('templates',fileName)):
             template = cv2.imread(os.path.join('templates',fileName))
             height, width = template.shape[:2]
