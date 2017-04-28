@@ -18,8 +18,9 @@ library(e1071)
   
 ### Reading the Features.csv Image Processing Output File
 ```{r eval=T, message=T}
-data <- read.csv("features-old.csv")
+data <- read.csv("features.csv")
 data
+data$truePosition <- ifelse(data$truePosition==4, 3 , data$truePosition)
 data$truePosition <- as.factor(data$truePosition)
 data <- data[-c(which( colnames(data)=="id"))]
 ```

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.4.24)  27 APR 2017 21:42
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.4.24)  28 APR 2017 00:26
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -272,11 +272,14 @@ LaTeX Info: Redefining \nameref on input line 17.
 
 LaTeX Warning: No \author given.
 
+
+Package natbib Warning: Citation `cite2' on page 1 undefined on input line 31.
+
 ! Missing number, treated as zero.
 <to be read again> 
                    }
-l.41 \begin{figure}{1*\textwidth}
-                                 
+l.41 \begin{figure}{\textwidth}
+                               
 A number should have been here; I inserted `0'.
 (If you can't figure out why I needed to see a number,
 look up `weird error' in the index to The TeXbook.)
@@ -284,8 +287,8 @@ look up `weird error' in the index to The TeXbook.)
 ! Illegal unit of measure (pt inserted).
 <to be read again> 
                    }
-l.41 \begin{figure}{1*\textwidth}
-                                 
+l.41 \begin{figure}{\textwidth}
+                               
 Dimensions can be in units of em, ex, in, pt, pc,
 cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
 I'll assume that you meant to say pt, for printer's points.
@@ -293,7 +296,7 @@ To recover gracefully from this error, it's best to
 delete the erroneous units; e.g., type `2' to delete
 two letters. (See Chapter 27 of The TeXbook.)
 
-<images/brain-areas.png, id=27, 1059.96pt x 454.69875pt>
+<images/brain-areas.png, id=43, 1059.96pt x 454.69875pt>
 File: images/brain-areas.png Graphic file (type png)
 
 <use images/brain-areas.png>
@@ -312,8 +315,63 @@ File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 48.
+ [2 <./images/brain-areas.png>]
+! Missing number, treated as zero.
+<to be read again> 
+                   }
+l.61 \begin{figure}{\textwidth}
+                               
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
 
-(./TumorDetectionLukasMohs.bbl
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   }
+l.61 \begin{figure}{\textwidth}
+                               
+Dimensions can be in units of em, ex, in, pt, pc,
+cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
+I'll assume that you meant to say pt, for printer's points.
+To recover gracefully from this error, it's best to
+delete the erroneous units; e.g., type `2' to delete
+two letters. (See Chapter 27 of The TeXbook.)
+
+<images/pixel.png, id=68, 615.29875pt x 665.48625pt>
+File: images/pixel.png Graphic file (type png)
+ <use images/pixel.png>
+Package pdftex.def Info: images/pixel.png used on input line 64.
+(pdftex.def)             Requested size: 131.52617pt x 142.26378pt.
+
+[3 <./images/pixel.png>]
+! Missing number, treated as zero.
+<to be read again> 
+                   }
+l.82 \begin{figure}{\textwidth}
+                               
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   }
+l.82 \begin{figure}{\textwidth}
+                               
+Dimensions can be in units of em, ex, in, pt, pc,
+cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
+I'll assume that you meant to say pt, for printer's points.
+To recover gracefully from this error, it's best to
+delete the erroneous units; e.g., type `2' to delete
+two letters. (See Chapter 27 of The TeXbook.)
+
+<images/sequences.jpg, id=77, 1561.835pt x 533.995pt>
+File: images/sequences.jpg Graphic file (type jpg)
+
+<use images/sequences.jpg>
+Package pdftex.def Info: images/sequences.jpg used on input line 85.
+(pdftex.def)             Requested size: 416.10065pt x 142.26378pt.
+ (./TumorDetectionLukasMohs.bbl
 LaTeX Font Info:    Try loading font information for U+msa on input line 16.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/umsa.fd
@@ -324,35 +382,39 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 16.
 (/usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ))
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 58.
- [2 <./images/brain-areas.png>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 58.
+
+Package natbib Warning: There were undefined citations.
+
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 95.
+[4 <./images/sequences.jpg>]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 95.
  (./TumorDetectionLukasMohs.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 58.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 58.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 95.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 95.
 Package rerunfilecheck Info: File `TumorDetectionLukasMohs.out' has not changed
 .
-(rerunfilecheck)             Checksum: 9D1DD42EE99038644A0CBAACFF6F0CD3;298.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 58.
+(rerunfilecheck)             Checksum: 97B7164592ACC76B986731C5ABADB384;617.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 95.
  ) 
 Here is how much of TeX's memory you used:
- 5824 strings out of 493089
- 84877 string characters out of 6134842
- 167819 words of memory out of 5000000
- 9245 multiletter control sequences out of 15000+600000
- 10320 words of font info for 39 fonts, out of 8000000 for 9000
+ 5852 strings out of 493089
+ 85283 string characters out of 6134842
+ 168918 words of memory out of 5000000
+ 9261 multiletter control sequences out of 15000+600000
+ 10679 words of font info for 40 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,6n,28p,666b,347s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 41i,6n,28p,1081b,347s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 ></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
-</usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></
-usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></u
-sr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></us
-r/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on TumorDetectionLukasMohs.pdf (2 pages, 1146698 bytes).
+</usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb
+></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><
+/usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></
+usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></u
+sr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
+Output written on TumorDetectionLukasMohs.pdf (4 pages, 1625423 bytes).
 PDF statistics:
- 82 PDF objects out of 1000 (max. 8388607)
- 69 compressed objects within 1 object stream
- 13 named destinations out of 1000 (max. 500000)
- 46 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 118 PDF objects out of 1000 (max. 8388607)
+ 99 compressed objects within 1 object stream
+ 21 named destinations out of 1000 (max. 500000)
+ 88 words of extra memory for PDF output out of 10000 (max. 10000000)
 

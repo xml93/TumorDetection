@@ -1,5 +1,9 @@
 \BOOKMARK [1][-]{section.1}{Abstract}{}% 1
-\BOOKMARK [1][-]{section.2}{Introduction}{}% 2
+\BOOKMARK [1][-]{section.2}{Introduction and Background}{}% 2
 \BOOKMARK [2][-]{subsection.2.1}{Brain Cancer}{section.2}% 3
 \BOOKMARK [2][-]{subsection.2.2}{Magnetic Resonance Imaging \(MRI\)}{section.2}% 4
 \BOOKMARK [2][-]{subsection.2.3}{The Human Brain}{section.2}% 5
+\BOOKMARK [2][-]{subsection.2.4}{Computer Vision}{section.2}% 6
+\BOOKMARK [2][-]{subsection.2.5}{Machine Learning}{section.2}% 7
+\BOOKMARK [1][-]{section.3}{Implementation: ML Prediciton based on CV Pattern Matching Outcomes}{}% 8
+\BOOKMARK [2][-]{subsection.3.1}{REMBRANDT Image Data Set}{section.3}% 9

@@ -74,7 +74,7 @@ def main():
                         #print(str(getImageBrigthness(img)))
                         img2 = img.copy()
 
-                        templateSizingSteps = np.arange(0.5,1.5,0.25)
+                        templateSizingSteps = np.arange(1,1.5,0.25)
                         for step in templateSizingSteps:
                             print("Current resizing step: " + str(step))
                             template = baseTemplate
@@ -145,23 +145,20 @@ def main():
                             #print("top_left: " + str(top_left))
                             #print("bottom_right: " + str(bottom_right))
                 truth = truthDict[str(dirName.split("/")[-1])]
-                print("--------------")
-                print("--------------")
-                print("--------------")
                 features.append(str(float(bestLayer)/layerCount))
                 features.append(str(float(bestBottom_right[0] + bestTop_left[0])/2))
                 features.append(str(float(bestBottom_right[1] + bestTop_left[1])/2))
                 features.append(str(bestRatio))
                 features.append(str(bestProb))
-                print(features)
+                #print(features)
 
             features.append(str(truth))
             writeRow(outPutFile, features)
-            cv2.rectangle(bestProbImg,bestTop_left, bestBottom_right, 255, 1)
-            plt.subplot(121),plt.imshow(bestProbImg,cmap = 'gray')
-            plt.title('Best('+str(dirName.split("/")[-1]) + '): ' + str(bestRatio) + ' : ' + str(bestLayer)), plt.xticks([]), plt.yticks([])
-            plt.subplot(122),plt.imshow(baseTemplate,cmap = 'gray')
-            plt.title('Template'), plt.xticks([]), plt.yticks([])
-            plt.show()
+            #cv2.rectangle(bestProbImg,bestTop_left, bestBottom_right, 255, 1)
+            #plt.subplot(121),plt.imshow(bestProbImg,cmap = 'gray')
+            #plt.title('Best('+str(dirName.split("/")[-1]) + '): ' + str(bestRatio) + ' : ' + str(bestLayer)), plt.xticks([]), plt.yticks([])
+            #plt.subplot(122),plt.imshow(baseTemplate,cmap = 'gray')
+            #plt.title('Template'), plt.xticks([]), plt.yticks([])
+            #plt.show()
 
 main()
