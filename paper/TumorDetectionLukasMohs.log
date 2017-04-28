@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.4.24)  28 APR 2017 00:26
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.4.24)  28 APR 2017 10:27
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -272,31 +272,7 @@ LaTeX Info: Redefining \nameref on input line 17.
 
 LaTeX Warning: No \author given.
 
-
-Package natbib Warning: Citation `cite2' on page 1 undefined on input line 31.
-
-! Missing number, treated as zero.
-<to be read again> 
-                   }
-l.41 \begin{figure}{\textwidth}
-                               
-A number should have been here; I inserted `0'.
-(If you can't figure out why I needed to see a number,
-look up `weird error' in the index to The TeXbook.)
-
-! Illegal unit of measure (pt inserted).
-<to be read again> 
-                   }
-l.41 \begin{figure}{\textwidth}
-                               
-Dimensions can be in units of em, ex, in, pt, pc,
-cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
-I'll assume that you meant to say pt, for printer's points.
-To recover gracefully from this error, it's best to
-delete the erroneous units; e.g., type `2' to delete
-two letters. (See Chapter 27 of The TeXbook.)
-
-<images/brain-areas.png, id=43, 1059.96pt x 454.69875pt>
+<images/brain-areas.png, id=49, 1059.96pt x 454.69875pt>
 File: images/brain-areas.png Graphic file (type png)
 
 <use images/brain-areas.png>
@@ -308,102 +284,84 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
  [1
 
 {/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 48.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 49.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 48.
- [2 <./images/brain-areas.png>]
-! Missing number, treated as zero.
-<to be read again> 
-                   }
-l.61 \begin{figure}{\textwidth}
-                               
-A number should have been here; I inserted `0'.
-(If you can't figure out why I needed to see a number,
-look up `weird error' in the index to The TeXbook.)
-
-! Illegal unit of measure (pt inserted).
-<to be read again> 
-                   }
-l.61 \begin{figure}{\textwidth}
-                               
-Dimensions can be in units of em, ex, in, pt, pc,
-cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
-I'll assume that you meant to say pt, for printer's points.
-To recover gracefully from this error, it's best to
-delete the erroneous units; e.g., type `2' to delete
-two letters. (See Chapter 27 of The TeXbook.)
-
-<images/pixel.png, id=68, 615.29875pt x 665.48625pt>
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 49.
+ [2 <./images/brain-areas.png>] <images/pixel.png, id=75, 615.29875pt x 665.486
+25pt>
 File: images/pixel.png Graphic file (type png)
- <use images/pixel.png>
+
+<use images/pixel.png>
 Package pdftex.def Info: images/pixel.png used on input line 64.
 (pdftex.def)             Requested size: 131.52617pt x 142.26378pt.
 
-[3 <./images/pixel.png>]
-! Missing number, treated as zero.
-<to be read again> 
-                   }
-l.82 \begin{figure}{\textwidth}
-                               
-A number should have been here; I inserted `0'.
-(If you can't figure out why I needed to see a number,
-look up `weird error' in the index to The TeXbook.)
+Overfull \hbox (100.04976pt too wide) in paragraph at lines 78--79
+\OT1/cmr/m/n/10.95 im-age pro-cess-ing and \OT1/cmr/m/it/10.95 R \OT1/cmr/m/n/1
+0.95 for the ML part, can be found on Github: \OT1/cmr/m/it/10.95 https://githu
+b.com/lukasmohs/TumorDetection
+ []
 
-! Illegal unit of measure (pt inserted).
-<to be read again> 
-                   }
-l.82 \begin{figure}{\textwidth}
-                               
-Dimensions can be in units of em, ex, in, pt, pc,
-cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
-I'll assume that you meant to say pt, for printer's points.
-To recover gracefully from this error, it's best to
-delete the erroneous units; e.g., type `2' to delete
-two letters. (See Chapter 27 of The TeXbook.)
-
-<images/sequences.jpg, id=77, 1561.835pt x 533.995pt>
+[3 <./images/pixel.png>] <images/sequences.jpg, id=85, 1561.835pt x 533.995pt>
 File: images/sequences.jpg Graphic file (type jpg)
 
 <use images/sequences.jpg>
-Package pdftex.def Info: images/sequences.jpg used on input line 85.
+Package pdftex.def Info: images/sequences.jpg used on input line 87.
 (pdftex.def)             Requested size: 416.10065pt x 142.26378pt.
- (./TumorDetectionLukasMohs.bbl
-LaTeX Font Info:    Try loading font information for U+msa on input line 16.
+
+Overfull \hbox (179.66983pt too wide) in paragraph at lines 95--98
+\OT1/cmr/m/n/10.95 the pa-tients were re-trieved from the \OT1/cmr/m/it/10.95 C
+an-cer Im-age Archive\OT1/cmr/m/n/10.95 : \OT1/cmr/m/it/10.95 https://wiki.canc
+erimagingarchive.net/display/Public/REMBRANDT
+ []
+
+<images/full-sequence.jpg, id=87, 1204.5pt x 275.0275pt>
+File: images/full-sequence.jpg Graphic file (type jpg)
+
+<use images/full-sequence.jpg>
+Package pdftex.def Info: images/full-sequence.jpg used on input line 102.
+(pdftex.def)             Requested size: 623.07213pt x 142.26378pt.
+
+Overfull \hbox (189.45213pt too wide) in paragraph at lines 102--103
+ [][] 
+ []
+
+(./TumorDetectionLukasMohs.bbl
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [4 <./images/sequences.jpg>]
+LaTeX Font Info:    Try loading font information for U+msa on input line 35.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 16.
+LaTeX Font Info:    Try loading font information for U+msb on input line 35.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ))
-
-Package natbib Warning: There were undefined citations.
-
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 95.
-[4 <./images/sequences.jpg>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 95.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 111.
+ [5 <./images/full-sequence.jpg>]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 111.
  (./TumorDetectionLukasMohs.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 95.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 95.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 111.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 111.
 Package rerunfilecheck Info: File `TumorDetectionLukasMohs.out' has not changed
 .
-(rerunfilecheck)             Checksum: 97B7164592ACC76B986731C5ABADB384;617.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 95.
+(rerunfilecheck)             Checksum: E0BD02DCA245CD2BD5C15365AE948A29;686.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 111.
  ) 
 Here is how much of TeX's memory you used:
- 5852 strings out of 493089
- 85283 string characters out of 6134842
- 168918 words of memory out of 5000000
- 9261 multiletter control sequences out of 15000+600000
+ 5870 strings out of 493089
+ 85580 string characters out of 6134842
+ 170080 words of memory out of 5000000
+ 9273 multiletter control sequences out of 15000+600000
  10679 words of font info for 40 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,6n,28p,1081b,347s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 41i,6n,28p,1081b,427s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 ></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
 </usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb
@@ -411,10 +369,10 @@ Here is how much of TeX's memory you used:
 /usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></
 usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></u
 sr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on TumorDetectionLukasMohs.pdf (4 pages, 1625423 bytes).
+Output written on TumorDetectionLukasMohs.pdf (5 pages, 1718031 bytes).
 PDF statistics:
- 118 PDF objects out of 1000 (max. 8388607)
- 99 compressed objects within 1 object stream
- 21 named destinations out of 1000 (max. 500000)
- 88 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 137 PDF objects out of 1000 (max. 8388607)
+ 115 compressed objects within 2 object streams
+ 26 named destinations out of 1000 (max. 500000)
+ 101 words of extra memory for PDF output out of 10000 (max. 10000000)
 

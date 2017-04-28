@@ -70,7 +70,7 @@ def main():
                         crop(filePath,str(f))
                         fileName = str(dirName) + "/" + "cropped_" + f
                         img = cv2.imread(fileName)
-                        os.remove(fileName)
+                        #s.remove(fileName)
                         #print(str(getImageBrigthness(img)))
                         img2 = img.copy()
 

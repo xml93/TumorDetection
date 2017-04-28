@@ -37,10 +37,11 @@ The high variance in the surivial rate is given by many factors such as the type
 In comparison to \textit{Computer Tomography} (CT), MRI doesn't rely on \textit{X-radiation}, which qualifies it as a less harmful method. It should be mentioned that the magnetic waves of MRI can affect \textit{cardiac pacemakers} so that exceptions apply. \citep{edelman1993magnetic}
 
 \subsection{The Human Brain}
-Especially the development and refinement of the MRI technology favored advanced studies about the structure and functionality of the human brain. In order to understand the classification task of the presented algorithm, the major parts of the human brain are shortly described:
-\begin{figure}{\textwidth}
+Especially the development and refinement of the MRI technology favored advanced studies about the structure and functionality of the human brain. In order to understand the classification task of the presented algorithm, the major parts of the human brain are shortly described and visualized in Figure \ref{fig:brain}:
+\begin{figure}
 	\centering
 	\includegraphics[width=10cm]{brain-areas}
+	\label{fig:brain}
 	\caption{Brain Areas (source: Arizona State University)}
 \end{figure}%
 
@@ -55,13 +56,14 @@ Especially the development and refinement of the MRI technology favored advanced
 \citep{duvernoy2012human}
 
 \subsection{Computer Vision}
+\label{cv}
 \textit{Computer Vision} (CV) is a field of \textit{Computer Science} that focusses on the way of how to digitally process, analyze and understand images. Driven by the development of cheap cameras and computing power, CV is applied in many cirsumstances to support or replace the human's richest sense: the eye.
 To provide a highlevel understanding of a CV identification or classification approach, one has to consider the digital representation of an image on the computer. This can be decomposed to a two-dimensional matrix, where each entry holds a tupel of three values: the \textit{\textbf{R}ed}, \textit{\textbf{G}reen} and \textit{\textbf{B}lue} (RGB) channel. This tupel identifies how the color of one specific \textit{pixel} is composed. These matrix of pixels is often referred to as \textit{raster graphic}. Figure \ref{fig:pixel} demonstrates this representation for three specific pixels within an image. Most common file types represent these three channel values  in a range between 0 and 255. The brightness of an image is therefore determined by the average of the sum of each pixel's RGB values. The contrast of an image is referring to the variance of the sum of each pixel's RGB values: the higher the difference, the stronger the contrast. These concepts are important to later understand the image processing algorithm.
 
-\begin{figure}{\textwidth}
-	\label{fig:pixel}
+\begin{figure}
 	\centering
 	\includegraphics[height=5cm]{pixel}
+	\label{fig:pixel}
 	\caption{Raster Graphics (source: Wikipedia)}
 \end{figure}%
 
@@ -74,17 +76,43 @@ Within this section I want to describe the setup and implementation of the \text
 	\item First, the images fo the REMBRANDT dataset are retrieved, preprocessed and analyzed by the application of several pattern matching methods.
 	\item Then, the output of the analysis is written to \textit{CSV} file to be taken as an input for the ML learning and prediction approach.
 \end{itemize}
+The most recent version of the source code of this project, which is based on  \textit{Python} for the image processing and \textit{R} for the ML part, can be found on Github: \textit{https://github.com/lukasmohs/TumorDetection} .
 
 \subsection{REMBRANDT Image Data Set}
 At this point, the input data in form of a series of image sequences is described: 
-The data of REMBRANDT was generated through the Glioma Molecular Diagnostic Initiative and contains the pre-surgical MR multi-sequence images from 130 patients. Each sequence can be defined as one specifc direction of slicing, which was used in order to scan the patient's head. This means that each patient was scanned either  horizontally or vertically from different angles. In figure \ref{fig:sequences}, one image of each of these sequnces for one patient is provided.
+The data of REMBRANDT was generated through the Glioma Molecular Diagnostic Initiative and contains the pre-surgical MR multi-sequence images from 130 patients. This image dataset is enriched by a professional classification of three differen radiologists for each individual stating the tumor location within the brain. Each sequence can be defined as one specifc direction of slicing, which was used in order to scan the patient's head. This means that each patient was scanned either  horizontally or vertically from different angles. In figure \ref{fig:sequences}, one image of each of these sequnces for one patient is provided. \citep{cite3}
 
-\begin{figure}{\textwidth}
+\begin{figure}
 	\label{fig:sequences}
 	\centering
 	\includegraphics[height=5cm]{sequences}
-	\caption{Sequence Comparison}
+	\caption{Sequence Comparison (back to front, top to bottom, left to right)}
 \end{figure}%
+
+Comparing the images provided from each sequence, we can see that the image on the left  (\textit{back to front}) and the one on the right (\textit{left to right}) both contain more \textit{noise} in terms of head parts that don't belong to the actual brain. The automatic localization within the image is additionally more complex than for the one in the middle (\textit{top to bottom}) due to the fact that images might not be cropped similarily so that a localization would need to be realized relatively to the shape of the skull, which would be more error-prone.
+Therefore, the \textit{top-down} sequence of each patient was chosen to perform the analysis. It should be mentioned that the sequences of each patient are not of similar length meaning that they contain a different numbers of single images.
+
+\subsection{Image Preprocessing}
+label{image-preprocessing}
+As the first step of the CV part, the top-down image sequences for the patients were retrieved from the \textit{Cancer Image Archive}: \textit{https://wiki.cancerimagingarchive.net/display/Public/REMBRANDT} .
+An entire sequence of scans is shown in Figure \ref{fig:full-sequence}.
+
+\begin{figure}
+	\label{fig:full-sequence}
+	\centering
+	\includegraphics[height=5cm]{full-sequence}
+	\caption{Full Top-down Sequence of Individual}
+\end{figure}%
+
+In order to better determine the location within one single image and to improve the pattern matching performance, the images should b cropped to the skull in the middle of the image. Hence, the algorithm contained in the \textit{cropImages.py} file was developed that iterates over the \textit{x-axis} and \textit{y-axis} of each image and identifies the important parts of the image based on the brightness (see: secttion \ref{cv}). It's outcome is vidualized in Figure \ref{fig:crop-image}
+
+\begin{figure}
+	\label{fig:crop-image}
+	\centering
+	\includegraphics[height=5cm]{crop-image}
+	\caption{Image Cropping}
+\end{figure}%
+
 
 
 \bibliography{tumorDetection}
