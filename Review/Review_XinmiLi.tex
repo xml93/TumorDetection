@@ -1,0 +1,54 @@
+\documentclass[twoside,11pt]{article}
+
+% Any additional packages needed should be included after jmlr2e.
+% Note that jmlr2e.sty includes epsfig, amssymb, natbib and graphicx,
+% and defines many common macros, such as 'proof' and 'example'.
+%
+% It also sets the bibliographystyle to plainnat; for more information on
+% natbib citation styles, see the natbib documentation, a copy of which
+% is archived at http://www.jmlr.org/format/natbib.pdf
+
+\usepackage{jmlr2e}
+%\usepackage{parskip}
+
+% Definitions of handy macros can go here
+\newcommand{\dataset}{{\cal D}}
+\newcommand{\fracpartial}[2]{\frac{\partial #1}{\partial  #2}}
+% Heading arguments are {volume}{year}{pages}{submitted}{published}{author-full-names}
+
+% Short headings should be running head and authors last names
+\ShortHeadings{95-845: MLHC Proposal}{Lastname and Lastname}
+\firstpageno{1}
+
+\begin{document}
+
+\title{Heinz 95-845: Secondary Review}
+
+\author{\name Xinmi Li \email xinmil@andrew.cmu.edu \\
+       \addr Heinz College\\
+       Carnegie Mellon University\\
+       Pittsburgh, PA, United States} 
+
+\maketitle
+
+
+\section{Paper Review}
+\subsection{Summary}
+This paper is well-organized and clearly illustrates the problem and how the author works on it. The purpose of this study is to dectect the location of brain tumor. There are eight outcomes, one indicates no tumor and the other seven represents different localtions of tumor in brain. This study is an ensemble of computer vision (CV) and machine learning (ML), including using CV to process the MR image to numerical representations and ML to build the model to predict the tumor location.
+
+In the image processing steps, 130 patients' multi-sequence of pre-surgical MR images are retreived. For each patient, only the top-down sequense of each patient is kept since they have less noises. Among each sequence, only the one in the middle is kept and cropped based on brightness to leave only the important parts of skull. Then a template representing the general pattern of brain tumor is developed based on the average of RGB values of other tumtoor images. Then two methods from OpenCV library that performs the best in matching the target image with template image, CV\_TM\_SQDIFF\_NORMED and CV\_TM\_CCORR\_NORMED, are used to generate a result matirx of the match. Since these two methods prefers the match that has similar overall brightness, modifications are made by adding a score representing the ratio of the brightness of best matching area (the tumor) and the brightness of surrrounding area. Therefore, for each patient with a sequence of images, the image processing output consists of these numbers: z indicating the image in the position with best match, x \& y indicating the xy corordinates of the postition of match, best probability which is the sum of all pixel values of the best match, and the best probability ratio indicating the modified matching score. And each matching method has its own x, y, best probability, and best probability ratio respectively, so each patient's image processing output consists of 9 numbers.
+
+In classification steps, 33 patients with labels of tumor location decided by three radiologists are used, with 2/3 train set (22 patients) and 1/3 test set (11 patients). Naive Bayes and Decision Tree are used to generate the model, with an accuracy between 25\% to 50\% on 8 possible outcomes, which is much better than random guessing.
+
+\subsection{Strengths and Limitations}
+This study does really good job on using CV to process the MR image. The problem is clearly stated and the application of this study is really promising. Since most machine learning models focuses on predicting binary medical outcomes. And for MR images, the dectection of whether having tumor or not is a big decision and strongly rely on medical knowledge and experience and ML models may not robust enough to predict it, and making such decision means a huge responsibility to undertake. The novelty of this study resides in the detection of localtion of tumor after the decision of tumor existence has been made by medical professionals. If this study could be applied as a supplement of the radiologist's judgement, the classification of patients with different kinds tumor will be more efficient, and the wrong locolization would not be as disastrous as the wrong diagnosis. Besides, the novelty also lies in the modification of existing OpenCV methods by adding a ratio. Since in this study, the matching template is just the "typical" tumor and its used to match a larger image with tumor and other parts (which can be considered as noises) by iterating over pixels, the most similar overall brightness for the whole target image does no longer make the best match, so adding the ratio score representing the comparison of best match area (tumor) and the surrounding area is significant.
+
+As mentioned in the paper by the author himself, the main weakness of this study is the small size of train and test set, which makes it not reliable for the result analysis. Another weakness resides in the tumor template generation. Images to generate the "typical" tumor are manually picked by the author, with no clear statement of the selecting criteria. Neither are able to know whether the input images are variable enough to capture significant characteristics of a tumor, nor can we infer that whether tumors in different locations should have different representations.
+
+\subsection{Other Suggestions}
+Great job has been done in this work, but it also be improved. First, a larger data set will make the model more robust. Second, in selecting images to generate the template, medical knowledge can be based on. And the tumor in each location could have a template generation respectively. Third, in training the machine learning model, indicators generated from the two OpenCV methods can be used to train the model sepearately, and a comparison among these two models and the model with combined indicators (the model in this study) can be made to decide the best one. And a comparison and analysis on different algorithms will also be helpful.
+
+\section{Code Review}
+The code is neatly structured and clear for comprehension. However, it will be more convinient for reviewers to understand the code by adding in-line comments and a README file with instructions on executing the file.
+
+\end{document}
